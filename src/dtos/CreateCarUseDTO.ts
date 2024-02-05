@@ -1,4 +1,4 @@
-export interface ICreateCarUser {
+export interface ICreateCarUseDTO {
     startDate: string
     finalDate: string
     reason: string

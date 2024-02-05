@@ -7,12 +7,12 @@ import { ICreateCarDTO } from '../../dtos/CreateCarDTO'
 export default class CreateCarService {
   constructor (
     @inject('CarRepository')
-    private readonly creditorRepository: ICarsRepository
+    private readonly carRepository: ICarsRepository
   ) {
   }
 
   public async execute (data: ICreateCarDTO): Promise<Car> {
-    const car = await this.creditorRepository.create(data)
+    const car = await this.carRepository.create(data)
     return car
   }
 }

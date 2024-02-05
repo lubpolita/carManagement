@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm'
-import { dataSource } from '@shared/typeorm'
+import { dataSource } from '../../../typeorm' 
 import { Driver } from '../../entities/Driver'
 import { ICreateDriverDTO } from '../../../../dtos/CreateDriverDTO'
 import { IDriverRepository } from './IDriverRepository'
@@ -25,9 +25,8 @@ export default class DriverRepository implements IDriverRepository {
         return driver
     }
 
-
     public async findAll(): Promise<Driver[] | undefined> {
-        const driver= await this.ormRepository.find()
+        const driver = await this.ormRepository.find()
         return driver
     }
 

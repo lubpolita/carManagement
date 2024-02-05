@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm'
-import { dataSource } from '@shared/typeorm'
+import { dataSource } from '../../../typeorm'
 import { Car } from '../../entities/Car'
 import { ICreateCarDTO } from '../../../../dtos/CreateCarDTO'
 import { ICarsRepository } from './ICarRepository'
@@ -18,7 +18,7 @@ export default class CarRepository implements ICarsRepository {
         const car = this.ormRepository.create(data)
         await this.ormRepository.save(car)
         return car
-    }
+    } 
 
     public async findById(id: string): Promise<Car | undefined> {
         const car = await this.ormRepository.findOne({ where: { id } })

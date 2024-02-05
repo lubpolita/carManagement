@@ -3,7 +3,7 @@ import { Car } from '../../shared/typeorm/entities/Car'
 import { ICarsRepository } from '../../shared/typeorm/repositories/Car/ICarRepository'
 
 @injectable()
-export default class FindAllcarService {
+export default class FindByIdService {
   constructor (
     @inject('CarRepository')
     private readonly carRepository: ICarsRepository

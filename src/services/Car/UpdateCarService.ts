@@ -19,6 +19,10 @@ export default class UpdateCarService {
 
         const car = await this.carRepository.findById(id);
 
+        if(!car){
+            throw new Error('Id not found')
+        }
+
         color !== undefined ? car.color : color,
         brand !== undefined ? car.brand : brand,
         licensePlate !== undefined ? car.licensePlate : licensePlate
