@@ -10,15 +10,15 @@ Projeto desenvolvido para gerenciar a utilização de automóveis em uma empresa
 - Cadastrar um novo automóvel
 - Atualizar um automóvel cadastrado
 - Excluir um automóvel cadastrado
-- Recuperar um automóvel pelo identificador único
-- Listar automóveis, com opção de filtrar por cor e marca
+- Recuperar um automóvel pelo id
+- Listar automóveis
 
 #### Cadastro de Motoristas
 - Cadastrar um novo motorista
 - Atualizar um motorista cadastrado
 - Excluir um motorista cadastrado
-- Recuperar um motorista pelo identificador único
-- Listar motoristas, com opção de filtrar por nome
+- Recuperar um motorista pelo id
+- Listar motoristas
 
 #### Utilização de Automóvel
 - Registrar a utilização de um automóvel por um motorista, com data de início e motivo
@@ -41,11 +41,6 @@ Projeto desenvolvido para gerenciar a utilização de automóveis em uma empresa
 - Motorista que utilizou
 - Automóvel utilizado
 - Motivo de utilização
-
-### :warning: Regras de Negócio
-
-- Um automóvel só pode ser utilizado por um motorista por vez.
-- Um motorista que já esteja utilizando um automóvel não pode utilizar outro ao mesmo tempo.
 
 ### :hammer_and_wrench: Tecnologias Utilizadas
 
