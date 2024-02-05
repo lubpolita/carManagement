@@ -1,7 +1,8 @@
 import { inject, injectable } from 'tsyringe'
+import { ICreateDriverDTO } from '../../dtos/CreateDriverDTO'
 import { Driver } from '../../shared/typeorm/entities/Driver'
 import { IDriverRepository } from '../../shared/typeorm/repositories/Driver/IDriverRepository'
-import { ICreateDriverDTO } from '../../dtos/CreateDriverDTO'
+
 
 @injectable()
 export default class CreateDriverService {
@@ -14,5 +15,6 @@ export default class CreateDriverService {
   public async execute (data: ICreateDriverDTO): Promise<Driver> {
     const car = await this.driverRepository.create(data)
     return car
+
   }
 }

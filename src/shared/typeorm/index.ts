@@ -1,14 +1,16 @@
-import { DataSource } from 'typeorm';
 import 'dotenv/config';
+import { DataSource } from 'typeorm';
+
+const isTestEnvironment = process.env.NODE_ENV === 'test';
 
 export const dataSource = new DataSource({
   name: 'default',
   type: 'postgres',
   host: 'localhost',
-  port: 5432,
+  port: isTestEnvironment ? 5433 : 5432,
   username: 'postgres',
-  password: '12345',
-  database: 'postgres',
+  password: isTestEnvironment ? 'docker': '12345',
+  database: isTestEnvironment ? 'oni': 'postgres',
   synchronize: false,
   logging: false,
   migrationsTableName: 'migration',

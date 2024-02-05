@@ -10,7 +10,7 @@ export default class EndCarUseService {
 
     }
 
-    public async execute(id: string): Promise<void> {
+    public async execute(id): Promise<void> {
 
         if (!id) {
             throw new Error('Please, enter a valid Id')

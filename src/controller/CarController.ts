@@ -52,7 +52,8 @@ export class CarController {
   public async delete (request: Request, response: Response): Promise <Response> {
     try {
       const deleteCar = container.resolve(DeleteCarService)
-      await deleteCar.execute(request.body)
+      const { id } = request.params
+      await deleteCar.execute(id)
       return response.status(201).json()
     } catch (err) {
       return response.status(400).json({

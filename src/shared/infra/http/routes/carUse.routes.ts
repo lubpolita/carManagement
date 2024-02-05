@@ -12,4 +12,6 @@ carUseRoutes.get('/:id', carUseController.findById)
 
 carUseRoutes.patch('/end/:id', carUseController.endCarUse)
 
+carUseRoutes.get('/driver/:id', carUseController.findAllByDriver)
+
 export default carUseRoutes

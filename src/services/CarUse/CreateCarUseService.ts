@@ -34,13 +34,13 @@ export default class CreateCarUseService {
     const driverIsBusy = await this.carUseRepository.findDriverById(data.driverId)
 
     for (const carUse of carIsBusy) {
-      if (!carUse.finalDate) {
+      if (carUse && !carUse.finalDate) {
         throw new Error('Car is busy')
       }
     }
 
     for (const driver of driverIsBusy) {
-      if (!driver.finalDate) {
+      if (driver && !driver.finalDate) {
         throw new Error('Driver is busy')
       }
     }

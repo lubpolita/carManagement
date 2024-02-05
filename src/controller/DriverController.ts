@@ -52,7 +52,8 @@ export class DriverController {
   public async delete (request: Request, response: Response): Promise <Response> {
     try {
       const deleteDriver = container.resolve(DeleteDriverService)
-      await deleteDriver.execute(request.body)
+      const { id } = request.params
+      await deleteDriver.execute(id)
       return response.status(201).json()
     } catch (err) {
       return response.status(400).json({

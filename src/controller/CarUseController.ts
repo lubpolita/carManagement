@@ -3,6 +3,7 @@ import 'reflect-metadata'
 import { container } from 'tsyringe'
 import CreateCarUseService from '../services/CarUse/CreateCarUseService'
 import EndCarUseService from '../services/CarUse/EndCarUseService'
+import FindAllCarUseByDriverService from '../services/CarUse/FindAllCarUseByDriverService'
 import FindAllCarUseService from '../services/CarUse/FindAllCarUseService'
 import FindByIdService from '../services/CarUse/FindByIdService'
 
@@ -40,6 +41,20 @@ export class CarUseController {
     try {
       const findAllCarUse = container.resolve(FindAllCarUseService)
       const carUseArray = await findAllCarUse.execute()
+      return response.status(201).json(carUseArray)
+    } catch (err) {
+      return response.status(400).json({
+        message: err.message
+      })
+    }
+  }
+
+  
+  public async findAllByDriver (request: Request, response: Response): Promise <Response> {
+    try {
+      const { id } = request.params
+      const findAllCarUse = container.resolve(FindAllCarUseByDriverService)
+      const carUseArray = await findAllCarUse.execute(id)
       return response.status(201).json(carUseArray)
     } catch (err) {
       return response.status(400).json({
