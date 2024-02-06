@@ -81,11 +81,11 @@ As configurações de conexão com o banco de dados podem ser alteradas facilmen
    ```
 5. Rode os testes automatizados implementados
    ```sh
-   npm test
+   npm run test
    ```
    Caso queira visualizar os logs dos testes automatizados digite o seguinte comando:
    ```sh
-   npm test:verbose
+   npm run test:verbose
    ```
 
 <!-- LICENSE -->
