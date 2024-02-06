@@ -110,7 +110,8 @@
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -118,9 +119,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -129,10 +127,9 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -157,61 +154,67 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { Repository } from 'typeorm'
-import { ICreateCarUseDTO } from '../../../../dtos/CreateCarUseDTO'
-import { dataSource } from '../../../typeorm'
-import { CarUse } from '../../entities/CarUse'
-import { ICarUseRepository } from './ICarUseRepository'
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Repository } from 'typeorm';
+import { dataSource } from '../..';
+import { ICreateCarUseDTO } from '../../../../dtos/CreateCarUseDTO';
+import { CarUse } from '../../entities/CarUse';
+import { ICarUseRepository } from './ICarUseRepository';
 &nbsp;
 export default class CarUseRepository implements ICarUseRepository {
-    private readonly ormRepository: Repository&lt;CarUse&gt;
-<span class="fstat-no" title="function not covered" >    constructor() {</span>
-<span class="cstat-no" title="statement not covered" >        this.ormRepository = dataSource.getRepository(CarUse)</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+  private readonly ormRepository: Repository&lt;CarUse&gt;;
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public async delete(id: string): Promise&lt;void&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        await this.ormRepository.delete(id)</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="fstat-no" title="function not covered" >  constructor() {</span>
+<span class="cstat-no" title="statement not covered" >    this.ormRepository = dataSource.getRepository(CarUse);</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public async create(data: ICreateCarUseDTO): Promise&lt;CarUse&gt; { </span>
-<span class="cstat-no" title="statement not covered" >        const carUse = this.ormRepository.create(data)</span>
-<span class="cstat-no" title="statement not covered" >        await this.ormRepository.save(carUse)</span>
-<span class="cstat-no" title="statement not covered" >        return carUse</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="fstat-no" title="function not covered" >  public async delete(id: string): Promise&lt;void&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    await this.ormRepository.delete(id);</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public async findById(id: string): Promise&lt;CarUse | undefined&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const carUse = await this.ormRepository.findOne({ where: { id } })</span>
-<span class="cstat-no" title="statement not covered" >        return carUse as CarUse| undefined;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="fstat-no" title="function not covered" >  public async create(data: ICreateCarUseDTO): Promise&lt;CarUse&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const carUse = this.ormRepository.create(data);</span>
+<span class="cstat-no" title="statement not covered" >    await this.ormRepository.save(carUse);</span>
+<span class="cstat-no" title="statement not covered" >    return carUse;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public async findCarById(id: string): Promise&lt;CarUse[] | undefined&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const carUse = await this.ormRepository.find({ where: { carId: id } })</span>
-<span class="cstat-no" title="statement not covered" >        return carUse;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="fstat-no" title="function not covered" >  public async findById(id: string): Promise&lt;CarUse | undefined&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const carUse = await this.ormRepository.findOne({ where: { id } });</span>
+<span class="cstat-no" title="statement not covered" >    return carUse as CarUse | undefined;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public async findDriverById(id: string): Promise&lt;CarUse[] | undefined&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const carUse = await this.ormRepository.find({ where: { driverId: id } })</span>
-<span class="cstat-no" title="statement not covered" >        return carUse;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="fstat-no" title="function not covered" >  public async findCarById(id: string): Promise&lt;CarUse[] | undefined&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const carUse = await this.ormRepository.find({ where: { carId: id } });</span>
+<span class="cstat-no" title="statement not covered" >    return carUse;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public async findAll(): Promise&lt;CarUse[] | undefined&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const carUse = await this.ormRepository.find()</span>
-<span class="cstat-no" title="statement not covered" >        return carUse</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="fstat-no" title="function not covered" >  public async findDriverById(id: string): Promise&lt;CarUse[] | undefined&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const carUse = await this.ormRepository.find({ where: { driverId: id } });</span>
+<span class="cstat-no" title="statement not covered" >    return carUse;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public async update(data: CarUse): Promise&lt;CarUse&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const carUse = await this.ormRepository.save(data)</span>
-<span class="cstat-no" title="statement not covered" >        return carUse</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="fstat-no" title="function not covered" >  public async findAll(): Promise&lt;CarUse[] | undefined&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const carUse = await this.ormRepository.find();</span>
+<span class="cstat-no" title="statement not covered" >    return carUse;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-}</pre></td></tr></table></pre>
+<span class="fstat-no" title="function not covered" >  public async update(data: CarUse): Promise&lt;CarUse&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const carUse = await this.ormRepository.save(data);</span>
+<span class="cstat-no" title="statement not covered" >    return carUse;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-05T23:45:32.283Z
+                at 2024-02-06T00:30:47.363Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

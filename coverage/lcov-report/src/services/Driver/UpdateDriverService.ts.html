@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">81.81% </span>
+                <span class="strong">80.64% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>27/33</span>
+                <span class='fraction'>25/31</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">81.81% </span>
+                <span class="strong">80.64% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>27/33</span>
+                <span class='fraction'>25/31</span>
             </div>
         
             
@@ -94,8 +94,8 @@
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -104,8 +104,11 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -114,12 +117,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -127,46 +124,46 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { inject, injectable } from 'tsyringe'
-import { IDriverRepository } from '../../shared/typeorm/repositories/Driver/IDriverRepository'
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable no-empty-function */
+import { inject, injectable } from 'tsyringe';
+import { IDriverRepository } from '../../shared/typeorm/repositories/Driver/IDriverRepository';
 &nbsp;
 @injectable()
 export default class UpdateDriverService {
-    constructor(
-        @inject('DriverRepository')
-        private readonly driverRepository: IDriverRepository
-    ) {
+  constructor(
+    @inject('DriverRepository')
+    private readonly driverRepository: IDriverRepository,
+  ) {}
 &nbsp;
-    }
+  public async execute({ id, name }): Promise&lt;void&gt; {
+    if (!id) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      throw new Error('Please, enter a valid Id');</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 &nbsp;
-    public async execute({ id, name }): Promise&lt;void&gt; {
+    const driver = await this.driverRepository.findById(id);
 &nbsp;
-        if (!id) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >            throw new Error('Please, enter a valid Id')</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
+    if (!id) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      throw new Error('Id not found');</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 &nbsp;
-        const driver = await this.driverRepository.findById(id);
+    if (!name) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      throw new Error('Please, enter a valid name');</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 &nbsp;
-        if(!id)<span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >            throw new Error('Id not found')</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
+    driver.name = name;
 &nbsp;
-        if(!name)<span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >            throw new Error('Please, enter a valid name')</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-        
-        driver.name = name
-&nbsp;
-        await this.driverRepository.update(driver)
-    }
-}</pre></td></tr></table></pre>
+    await this.driverRepository.update(driver);
+  }
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-05T23:45:32.283Z
+                at 2024-02-06T00:30:47.363Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

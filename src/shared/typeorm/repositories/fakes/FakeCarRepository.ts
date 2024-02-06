@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { v4 as uuidV4 } from 'uuid';
 import { ICreateCarDTO } from '../../../../dtos/CreateCarDTO';
 import { Car } from '../../entities/Car';

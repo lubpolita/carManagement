@@ -113,7 +113,8 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -130,10 +131,8 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
@@ -150,10 +149,6 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -162,65 +157,73 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { inject, injectable } from 'tsyringe'
-import { ICreateCarUseDTO } from '../../dtos/CreateCarUseDTO'
-import { CarUse } from '../../shared/typeorm/entities/CarUse'
-import { ICarsRepository } from '../../shared/typeorm/repositories/Car/ICarRepository'
-import { ICarUseRepository } from '../../shared/typeorm/repositories/CarUse/ICarUseRepository'
-import { IDriverRepository } from '../../shared/typeorm/repositories/Driver/IDriverRepository'
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { inject, injectable } from 'tsyringe';
+import { ICreateCarUseDTO } from '../../dtos/CreateCarUseDTO';
+import { CarUse } from '../../shared/typeorm/entities/CarUse';
+import { ICarsRepository } from '../../shared/typeorm/repositories/Car/ICarRepository';
+import { ICarUseRepository } from '../../shared/typeorm/repositories/CarUse/ICarUseRepository';
+import { IDriverRepository } from '../../shared/typeorm/repositories/Driver/IDriverRepository';
 &nbsp;
 @injectable()
 export default class CreateCarUseService {
-  constructor (
+  constructor(
     @inject('CarUseRepository')
     private readonly carUseRepository: ICarUseRepository,
     @inject('CarRepository')
     private readonly carRepository: ICarsRepository,
     @inject('DriverRepository')
     private readonly driverRepository: IDriverRepository,
-  ) {
-  }
+  ) {}
 &nbsp;
   public async execute(data: ICreateCarUseDTO): Promise&lt;CarUse&gt; {
-    
-    const carExists = await this.carRepository.findById(data.carId)
-    const driverExists = await this.driverRepository.findById(data.driverId)
+    const carExists = await this.carRepository.findById(data.carId);
+    const driverExists = await this.driverRepository.findById(data.driverId);
 &nbsp;
     if (!carExists) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >      throw new Error('Car does not exists')</span>
+<span class="cstat-no" title="statement not covered" >      throw new Error('Car does not exists');</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 &nbsp;
     if (!driverExists) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >      throw new Error('Driver does not exists')</span>
+<span class="cstat-no" title="statement not covered" >      throw new Error('Driver does not exists');</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 &nbsp;
-    const carIsBusy = await this.carUseRepository.findCarById(data.carId)
-    const driverIsBusy = await this.carUseRepository.findDriverById(data.driverId)
+    const carIsBusy = await this.carUseRepository.findCarById(data.carId);
+    const driverIsBusy = await this.carUseRepository.findDriverById(
+      data.driverId,
+    );
 &nbsp;
     for (const carUse of carIsBusy) {
       if (carUse &amp;&amp; !carUse.finalDate) {
-        throw new Error('Car is busy')
+        throw new Error('Car is busy');
       }
     }
 &nbsp;
     for (const driver of driverIsBusy) {
       if (driver &amp;&amp; !driver.finalDate) {
-        throw new Error('Driver is busy')
+        throw new Error('Driver is busy');
       }
     }
-    
-    const carUse = await this.carUseRepository.create(data)
-    return carUse
+&nbsp;
+    const carUse = await this.carUseRepository.create(data);
+    return carUse;
   }
-}</pre></td></tr></table></pre>
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-05T23:45:32.283Z
+                at 2024-02-06T00:30:47.363Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

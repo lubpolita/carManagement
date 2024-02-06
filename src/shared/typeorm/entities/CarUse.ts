@@ -1,5 +1,10 @@
-
-import { Column, Entity, JoinColumn, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Car } from './Car';
 import { Driver } from './Driver';
 
@@ -30,5 +35,4 @@ export class CarUse {
   @ManyToMany(() => Driver)
   @JoinColumn({ name: 'driverId' })
   driver: Driver;
-
 }

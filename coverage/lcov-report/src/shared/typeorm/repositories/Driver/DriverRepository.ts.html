@@ -100,7 +100,8 @@
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -108,9 +109,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -119,10 +117,9 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -137,51 +134,57 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { Repository } from 'typeorm'
-import { dataSource } from '../../../typeorm' 
-import { Driver } from '../../entities/Driver'
-import { ICreateDriverDTO } from '../../../../dtos/CreateDriverDTO'
-import { IDriverRepository } from './IDriverRepository'
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Repository } from 'typeorm';
+import { dataSource } from '../..';
+import { ICreateDriverDTO } from '../../../../dtos/CreateDriverDTO';
+import { Driver } from '../../entities/Driver';
+import { IDriverRepository } from './IDriverRepository';
 &nbsp;
 export default class DriverRepository implements IDriverRepository {
-    private readonly ormRepository: Repository&lt;Driver&gt;
-<span class="fstat-no" title="function not covered" >    constructor() {</span>
-<span class="cstat-no" title="statement not covered" >        this.ormRepository = dataSource.getRepository(Driver)</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+  private readonly ormRepository: Repository&lt;Driver&gt;;
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public async delete(id: string): Promise&lt;void&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        await this.ormRepository.delete(id)</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="fstat-no" title="function not covered" >  constructor() {</span>
+<span class="cstat-no" title="statement not covered" >    this.ormRepository = dataSource.getRepository(Driver);</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public async create(data: ICreateDriverDTO): Promise&lt;Driver&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const driver = this.ormRepository.create(data)</span>
-<span class="cstat-no" title="statement not covered" >        await this.ormRepository.save(driver)</span>
-<span class="cstat-no" title="statement not covered" >        return driver</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="fstat-no" title="function not covered" >  public async delete(id: string): Promise&lt;void&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    await this.ormRepository.delete(id);</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public async findById(id: string): Promise&lt;Driver | undefined&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const driver = await this.ormRepository.findOne({ where: { id } })</span>
-<span class="cstat-no" title="statement not covered" >        return driver</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="fstat-no" title="function not covered" >  public async create(data: ICreateDriverDTO): Promise&lt;Driver&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const driver = this.ormRepository.create(data);</span>
+<span class="cstat-no" title="statement not covered" >    await this.ormRepository.save(driver);</span>
+<span class="cstat-no" title="statement not covered" >    return driver;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public async findAll(): Promise&lt;Driver[] | undefined&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const driver = await this.ormRepository.find()</span>
-<span class="cstat-no" title="statement not covered" >        return driver</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="fstat-no" title="function not covered" >  public async findById(id: string): Promise&lt;Driver | undefined&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const driver = await this.ormRepository.findOne({ where: { id } });</span>
+<span class="cstat-no" title="statement not covered" >    return driver;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public async update(data: Driver): Promise&lt;Driver&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const driver= await this.ormRepository.save(data)</span>
-<span class="cstat-no" title="statement not covered" >        return driver</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="fstat-no" title="function not covered" >  public async findAll(): Promise&lt;Driver[] | undefined&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const driver = await this.ormRepository.find();</span>
+<span class="cstat-no" title="statement not covered" >    return driver;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-}</pre></td></tr></table></pre>
+<span class="fstat-no" title="function not covered" >  public async update(data: Driver): Promise&lt;Driver&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const driver = await this.ormRepository.save(data);</span>
+<span class="cstat-no" title="statement not covered" >    return driver;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-05T23:45:32.283Z
+                at 2024-02-06T00:30:47.363Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

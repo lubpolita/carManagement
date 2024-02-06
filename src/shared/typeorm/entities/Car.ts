@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('Car')
 export class Car {
@@ -12,5 +12,5 @@ export class Car {
   color: string;
 
   @Column()
-  brand: string; 
- }
+  brand: string;
+}

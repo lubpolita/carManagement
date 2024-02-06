@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">86.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>28/32</span>
+                <span class='fraction'>26/30</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">86.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>28/32</span>
+                <span class='fraction'>26/30</span>
             </div>
         
             
@@ -93,8 +93,7 @@
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -107,8 +106,6 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -125,45 +122,45 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { inject, injectable } from 'tsyringe'
-import { ICarsRepository } from '../../shared/typeorm/repositories/Car/ICarRepository'
-import { ICarUseRepository } from '../../shared/typeorm/repositories/CarUse/ICarUseRepository'
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { inject, injectable } from 'tsyringe';
+import { ICarsRepository } from '../../shared/typeorm/repositories/Car/ICarRepository';
+import { ICarUseRepository } from '../../shared/typeorm/repositories/CarUse/ICarUseRepository';
 &nbsp;
 @injectable()
 export default class DeleteCarService {
-    constructor(
-        @inject('CarRepository')
-        private readonly carRepository: ICarsRepository,
+  constructor(
+    @inject('CarRepository')
+    private readonly carRepository: ICarsRepository,
 &nbsp;
-        @inject('CarUseRepository')
-        private readonly carUseRepository: ICarUseRepository
-    ) {
+    @inject('CarUseRepository')
+    private readonly carUseRepository: ICarUseRepository,
+  ) {}
+&nbsp;
+  public async execute(id: string): Promise&lt;void&gt; {
+    const carExists = await this.carRepository.findById(id);
+    if (!carExists) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      throw new Error('Invalid car id');</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+&nbsp;
+    const carIsBusy = await this.carUseRepository.findCarById(id);
+    for (const carUse of carIsBusy) {
+      if (carUse<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; !carUse.finalDate)</span> <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        throw new Error('You cannot delete a car that is in use.');</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
     }
 &nbsp;
-    public async execute(id: string): Promise&lt;void&gt; {
-        
-        const carExists = await this.carRepository.findById(id)
-        if (!carExists) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >            throw new Error("Invalid car id")</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-&nbsp;
-        const carIsBusy = await this.carUseRepository.findCarById(id)
-        for (const carUse of carIsBusy) {
-            if ( carUse<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; !carUse.finalDate)</span> <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >              throw new Error("You cannot delete a car that is in use.")</span>
-<span class="cstat-no" title="statement not covered" >            }</span>
-          }
-&nbsp;
-        await this.carRepository.delete(id)
-    }
-}</pre></td></tr></table></pre>
+    await this.carRepository.delete(id);
+  }
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-05T23:45:32.283Z
+                at 2024-02-06T00:30:47.363Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

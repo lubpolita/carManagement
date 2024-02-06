@@ -1,3 +1,3 @@
 export interface ICreateDriverDTO {
-    name: string
+  name: string;
 }

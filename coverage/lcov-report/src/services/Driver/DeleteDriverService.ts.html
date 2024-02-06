@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.18% </span>
+                <span class="strong">88.57% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>33/37</span>
+                <span class='fraction'>31/35</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.18% </span>
+                <span class="strong">88.57% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>33/37</span>
+                <span class='fraction'>31/35</span>
             </div>
         
             
@@ -98,16 +98,14 @@
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
@@ -134,51 +132,50 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { inject, injectable } from 'tsyringe'
-import { ICarUseRepository } from '../../shared/typeorm/repositories/CarUse/ICarUseRepository'
-import { IDriverRepository } from '../../shared/typeorm/repositories/Driver/IDriverRepository'
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable no-empty-function */
+import { inject, injectable } from 'tsyringe';
+import { ICarUseRepository } from '../../shared/typeorm/repositories/CarUse/ICarUseRepository';
+import { IDriverRepository } from '../../shared/typeorm/repositories/Driver/IDriverRepository';
 &nbsp;
 @injectable()
 export default class DeleteDriverService {
-    constructor(
-        @inject('DriverRepository')
-        private readonly driverRepository: IDriverRepository,
+  constructor(
+    @inject('DriverRepository')
+    private readonly driverRepository: IDriverRepository,
 &nbsp;
-        @inject('CarUseRepository')
-        private readonly carUseRepository: ICarUseRepository
+    @inject('CarUseRepository')
+    private readonly carUseRepository: ICarUseRepository,
+  ) {}
 &nbsp;
-    ) {
+  public async execute(id: string): Promise&lt;void&gt; {
+    if (!id) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      throw new Error('Please, insert a valid id');</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+&nbsp;
+    const driverExists = await this.driverRepository.findById(id);
+    if (!driverExists) {
+      throw new Error('Invalid driver id');
     }
 &nbsp;
-    public async execute(id: string): Promise&lt;void&gt; {
-        if (!id) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >          throw new Error("Please, insert a valid id")</span>
+    const driverIsBusy = await this.carUseRepository.findDriverById(id);
+    for (const driver of driverIsBusy) {
+      if (driver<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; !driver.finalDate)</span> <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        throw new Error('You cannot delete a driver that is busy');</span>
 <span class="cstat-no" title="statement not covered" >      }</span>
-      
-      const driverExists = await this.driverRepository.findById(id)
-      if (!driverExists) {
-        throw new Error("Invalid driver id")
-      }
-&nbsp;
-      const driverIsBusy = await this.carUseRepository.findDriverById(id)
-        for (const driver of driverIsBusy) {
-            if (driver<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; !driver.finalDate)</span> <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >              throw new Error("You cannot delete a driver that is busy")</span>
-<span class="cstat-no" title="statement not covered" >            }</span>
-          }
-          
-      await this.driverRepository.delete(id)
-      
     }
-}</pre></td></tr></table></pre>
+&nbsp;
+    await this.driverRepository.delete(id);
+  }
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-05T23:45:32.283Z
+                at 2024-02-06T00:30:47.363Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

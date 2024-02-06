@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { v4 as uuidV4 } from 'uuid';
 import { ICreateDriverDTO } from '../../../../dtos/CreateDriverDTO';
 import { Driver } from '../../entities/Driver';
@@ -28,7 +29,9 @@ export class FakeDriverRepository implements IDriverRepository {
   }
 
   async update(driver: Driver): Promise<Driver> {
-    const oldDriver = this.fakeRepository.find(foundDriver => foundDriver.id === driver.id);
+    const oldDriver = this.fakeRepository.find(
+      foundDriver => foundDriver.id === driver.id,
+    );
 
     if (oldDriver) {
       Object.assign(oldDriver, driver);

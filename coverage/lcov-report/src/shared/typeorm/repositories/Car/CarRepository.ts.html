@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">56.41% </span>
+                <span class="strong">55.26% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>22/39</span>
+                <span class='fraction'>21/38</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">56.41% </span>
+                <span class="strong">55.26% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>22/39</span>
+                <span class='fraction'>21/38</span>
             </div>
         
             
@@ -110,9 +110,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -120,14 +117,12 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -139,52 +134,57 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { Repository } from 'typeorm'
-import { dataSource } from '../../../typeorm'
-import { Car } from '../../entities/Car'
-import { ICreateCarDTO } from '../../../../dtos/CreateCarDTO'
-import { ICarsRepository } from './ICarRepository'
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Repository } from 'typeorm';
+import { dataSource } from '../..';
+import { ICreateCarDTO } from '../../../../dtos/CreateCarDTO';
+import { Car } from '../../entities/Car';
+import { ICarsRepository } from './ICarRepository';
 &nbsp;
 export default class CarRepository implements ICarsRepository {
-    private readonly ormRepository: Repository&lt;Car&gt;
-<span class="fstat-no" title="function not covered" >    constructor() {</span>
-<span class="cstat-no" title="statement not covered" >        this.ormRepository = dataSource.getRepository(Car)</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+  private readonly ormRepository: Repository&lt;Car&gt;;
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public async delete(id: string): Promise&lt;void&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        await this.ormRepository.delete(id)</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="fstat-no" title="function not covered" >  constructor() {</span>
+<span class="cstat-no" title="statement not covered" >    this.ormRepository = dataSource.getRepository(Car);</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public async create(data: ICreateCarDTO): Promise&lt;Car&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const car = this.ormRepository.create(data)</span>
-<span class="cstat-no" title="statement not covered" >        await this.ormRepository.save(car)</span>
-<span class="cstat-no" title="statement not covered" >        return car</span>
-<span class="cstat-no" title="statement not covered" >    } </span>
+<span class="fstat-no" title="function not covered" >  public async delete(id: string): Promise&lt;void&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    await this.ormRepository.delete(id);</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public async findById(id: string): Promise&lt;Car | undefined&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const car = await this.ormRepository.findOne({ where: { id } })</span>
-<span class="cstat-no" title="statement not covered" >        return car</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="fstat-no" title="function not covered" >  public async create(data: ICreateCarDTO): Promise&lt;Car&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const car = this.ormRepository.create(data);</span>
+<span class="cstat-no" title="statement not covered" >    await this.ormRepository.save(car);</span>
+<span class="cstat-no" title="statement not covered" >    return car;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
+<span class="fstat-no" title="function not covered" >  public async findById(id: string): Promise&lt;Car | undefined&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const car = await this.ormRepository.findOne({ where: { id } });</span>
+<span class="cstat-no" title="statement not covered" >    return car;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public async findAll(): Promise&lt;Car[] | undefined&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const car = await this.ormRepository.find()</span>
-<span class="cstat-no" title="statement not covered" >        return car</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="fstat-no" title="function not covered" >  public async findAll(): Promise&lt;Car[] | undefined&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const car = await this.ormRepository.find();</span>
+<span class="cstat-no" title="statement not covered" >    return car;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public async update(data: Car): Promise&lt;Car&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const car = await this.ormRepository.save(data)</span>
-<span class="cstat-no" title="statement not covered" >        return car</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-&nbsp;
-}</pre></td></tr></table></pre>
+<span class="fstat-no" title="function not covered" >  public async update(data: Car): Promise&lt;Car&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const car = await this.ormRepository.save(data);</span>
+<span class="cstat-no" title="statement not covered" >    return car;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-05T23:45:32.283Z
+                at 2024-02-06T00:30:47.363Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

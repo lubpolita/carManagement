@@ -1,18 +1,16 @@
-import { inject, injectable } from 'tsyringe'
-import { CarUse } from '../../shared/typeorm/entities/CarUse'
-import { ICarUseRepository } from '../../shared/typeorm/repositories/CarUse/ICarUseRepository'
+import { inject, injectable } from 'tsyringe';
+import { CarUse } from '../../shared/typeorm/entities/CarUse';
+import { ICarUseRepository } from '../../shared/typeorm/repositories/CarUse/ICarUseRepository';
 
 @injectable()
 export default class FindByIdService {
-  constructor (
+  constructor(
     @inject('CarUseRepository')
-    private readonly carUseRepository: ICarUseRepository
-  ) {
+    private readonly carUseRepository: ICarUseRepository,
+  ) {}
 
-  }
-
-  public async execute (id: string): Promise<CarUse[] | undefined> {
-    const carUse = await this.carUseRepository.findCarById(id)
-    return carUse
+  public async execute(id: string): Promise<CarUse[] | undefined> {
+    const carUse = await this.carUseRepository.findCarById(id);
+    return carUse;
   }
 }
