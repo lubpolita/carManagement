@@ -72,11 +72,15 @@ As configurações de conexão com o banco de dados podem ser alteradas facilmen
    ```sh
    cd carManagement
    ```
-3. Instale as dependências
+3. Crie o banco de dados
+   ```sh
+   docker run --name postgres -e POSTGRES_PASSWORD=12345 -p 5432:5432 -d postgres
+   ```
+4. Instale as dependências
    ```sh
    yarn
    ```
-4. Rode os testes automatizados implementados
+5. Rode os testes automatizados implementados
    ```sh
    yarn test
    ```
