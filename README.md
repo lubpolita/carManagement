@@ -78,15 +78,15 @@ As configurações de conexão com o banco de dados podem ser alteradas facilmen
    ```
 4. Instale as dependências
    ```sh
-   yarn
+   npm install
    ```
 5. Rode os testes automatizados implementados
    ```sh
-   yarn test
+   npm test
    ```
    Caso queira visualizar os logs dos testes automatizados digite o seguinte comando:
    ```sh
-   yarn test:verbose
+   npm test:verbose
    ```
 
 <!-- LICENSE -->
